@@ -51,7 +51,7 @@ export default function SignIn() {
                 : (<AiFillEye className="absolute right-3 top-3 text-xl cursor-pointer"
                      onClick={()=> setShowPassword((prevState) => !prevState)}/>)}
             </div>
-            <div className='flex justify-between whitespace-nowrap text-sm sm: text-lg'>
+            <div className='flex justify-between whitespace-nowrap text-sm sm:text-lg'>
               <p className='mb-6'>Don't have an account?
                 <Link to="/sign-up"
                 className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out ml-1">Register</Link>
