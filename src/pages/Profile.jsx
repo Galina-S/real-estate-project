@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { checkActionCode, getAuth, updateProfile } from 'firebase/auth'
+import { getAuth, updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 import { toast } from "react-toastify";
-import {doc, getDocs, updateDoc } from 'firebase/firestore'
+import {doc, updateDoc } from 'firebase/firestore'
 
 function Profile() {
   const auth = getAuth();
@@ -60,7 +60,7 @@ function Profile() {
             disabled = {!changeDetail} 
             onChange = {onChange}
             className={`w-full mb-6 px-4 py-2 text-xl text-gray-700 
-          bg-red-50 border-gray-300 rounded transition ease-in-out  ${changeDetail && "bg-red-200 focus:bg-red-200"}`}/>
+          bg-red-50 border-gray-300 rounded transition ease-in-out  ${changeDetail && "bg-red-200 focus:bg-red-100"}`}/>
 
            {/*email input */}
            <input type="email" id="email" value={email} disabled className="w-full mb-6 px-4 py-2 text-xl text-gray-700 
