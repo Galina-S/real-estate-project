@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { toast } from "react-toastify";
-import {doc, updateDoc } from 'firebase/firestore'
+import {doc, updateDoc } from 'firebase/firestore';
+import {FaHome} from "react-icons/fa"
 
 function Profile() {
   const auth = getAuth();
@@ -82,6 +83,15 @@ function Profile() {
           </div>
 
         </form>
+        <button type='submit' className='w-full bg-blue-600 text-white uppercase px-7 py-3 
+        text-sm font-medium rounded shadow-md hover:bg-blue-700 transition duration-150 
+        ease-in-out hover:shadow-lg active:bg-blue-800'>
+          <Link to="/create-listing" className='flex justify-center items-center '>
+          <FaHome className='mr-2 text-3xl  rounded-full p-1'/>
+          Sell or rent your home
+          </Link>
+          
+        </button>
       </div>
     </section>
     </>
