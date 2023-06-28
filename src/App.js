@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import CreateListing from "./pages/CreateListing";
 
 
-
 function App() {
   return (
    <>
