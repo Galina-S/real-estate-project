@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAuth, updateProfile } from 'firebase/auth'
 import { useNavigate, Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { toast } from "react-toastify";
-import {doc, updateDoc } from 'firebase/firestore';
+import {collection, doc, updateDoc, where, query, orderBy, getDocs } from 'firebase/firestore';
 import {FaHome} from "react-icons/fa"
+import ListingItem from '../components/ListingItem';
 
 function Profile() {
   const auth = getAuth();
   const navigate = useNavigate();
-  const [changeDetail, setChangeDetail] = useState(false)
+  const [changeDetail, setChangeDetail] = useState(true);
+  const [listings, setListings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const [formData, setFormData] = useState ({
     name: auth.currentUser.displayName,
     email:  auth.currentUser.email
@@ -47,6 +51,29 @@ function Profile() {
       toast.error("Could not update profile details")
     }
   }
+
+  //fetch the data once the ProfilePage is loading
+  //each time the userId (uid) will be changed, a new data is going to be fetched
+  useEffect(()=> {
+    async function fetchUserListings(){
+      const listingRef = collection(db, "listings");
+      //create a query
+      const q = query(listingRef, where("userRef", "==", auth.currentUser.uid), orderBy("timestamp", "desc"));
+      //get the Documents
+      const querySnap = await getDocs(q);
+      let listings = [];
+      querySnap.forEach((doc) => {
+        return listings.push( {
+          id: doc.id,
+          data: doc.data(),
+        })
+      })
+      setListings(listings);
+      setLoading(false);
+    }
+    fetchUserListings();
+  }, [auth.currentUser.uid])
+
   return (
     <>
    <section className="font-serif max-w-6xl mx-auto flex justify-center items-center flex-col">
@@ -90,10 +117,26 @@ function Profile() {
           <FaHome className='mr-2 text-3xl  rounded-full p-1 border-2'/>
           Sell or rent your home
           </Link>
-          
+
         </button>
       </div>
     </section>
+    <div className='max-w-6xl px-3 mt-6 mx-auto'>
+       {!loading && listings.length > 0 && (
+        <>
+          <h2 className='text-2xl text-center font-semibold'>My Listings</h2>
+          <ul>
+            {listings.map ((listing) => (
+              <ListingItem 
+                key={listing.id} 
+                id= {listing.id} 
+                listing = {listing.data}
+              />
+            ))}
+          </ul>
+        </>
+       )}
+    </div>
     </>
   )
 }
