@@ -1,12 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getFirestore } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCIyF55GmETJtWXCW8odo-bn6elBYXDdw8",
+  apiKey: "AIzaSyATVr6t8CNrrzsnVZ1OF9pJtuevtSNI3GQ",
   authDomain: "real-estate-react-project.firebaseapp.com",
   projectId: "real-estate-react-project",
   storageBucket: "real-estate-react-project.appspot.com",

@@ -206,8 +206,7 @@ export default function EditListing() {
 
         setLoading(false);
         toast.success("Listing edited");
-        navigate(`/category/${formDataCopy.type}/${docRef.id}
-        }`);
+        navigate(`/category/${formDataCopy.type}/${docRef.id}`);
 
     }
 

@@ -32,6 +32,7 @@ export default function OAuth() {
       navigate("/");
     } catch (error) {
       toast.error("Could not authorize with Google");
+      console.log(error)
     }
   }
   return (

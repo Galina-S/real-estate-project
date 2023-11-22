@@ -178,8 +178,7 @@ export default function CreateListing() {
 
         setLoading(false);
         toast.success("Listing created");
-        navigate(`/category/${formDataCopy.type}/${docRef.id}
-        }`);
+        navigate(`/category/${formDataCopy.type}/${docRef.id}`);
 
     }
 
